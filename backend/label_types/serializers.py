@@ -44,6 +44,7 @@ class LabelSerializer(serializers.ModelSerializer):
         fields = (
             "id",
             "text",
+            "text1",
             "prefix_key",
             "suffix_key",
             "background_color",

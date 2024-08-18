@@ -13,6 +13,7 @@ export default {
   deleteAll: 'Delete All',
   search: 'Search',
   name: 'Name',
+  name2: 'Piyush ka beta',
   import: 'Import',
   export: 'Export',
   description: 'Description',

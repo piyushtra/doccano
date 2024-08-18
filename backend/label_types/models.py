@@ -13,6 +13,7 @@ def generate_random_hex_color():
 
 class LabelType(models.Model):
     text = models.CharField(max_length=100, db_index=True)
+    text1 = models.CharField(max_length=100, default="deva")
     prefix_key = models.CharField(
         max_length=10,
         blank=True,

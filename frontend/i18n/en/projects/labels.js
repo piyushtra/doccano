@@ -6,6 +6,7 @@ export default {
   importLabels: 'Import Labels',
   exportLabels: 'Export Labels',
   labelName: 'Label name',
+  labelName1: 'Piyush Pap',
   labelMessage: 'Label name is required',
   createLink: 'Create Link',
   linkName: 'Link name',
