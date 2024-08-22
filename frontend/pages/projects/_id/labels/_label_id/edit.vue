@@ -36,7 +36,7 @@ export default Vue.extend({
     return {
       editedItem: {
         text: '',
-        text1: '',
+        label_class_1: '',
         prefixKey: null,
         suffixKey: null,
         backgroundColor: '#73D8FF',

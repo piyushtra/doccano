@@ -17,13 +17,13 @@
           </v-col>
           <v-col cols="12" sm="6">
             <v-text-field
-              :value="text1"
+              :value="label_class_1"
               :counter="100"
               :label="$t('labels.labelName1')"
               :rules="[rules.required, rules.counter, rules.nameDuplicated]"
               outlined
               required
-              @input="$emit('update:text1', $event)"
+              @input="$emit('update:label_class_1', $event)"
             />
           </v-col>
           <v-col cols="12" sm="6">
@@ -113,7 +113,7 @@ export default Vue.extend({
       type: String,
       required: true
     },
-    text1: {
+    label_class_1: {
       type: String,
       required: true
     },

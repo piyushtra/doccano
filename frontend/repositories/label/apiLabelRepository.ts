@@ -6,7 +6,7 @@ function toModel(item: { [key: string]: any }): LabelItem {
   return new LabelItem(
     item.id,
     item.text,
-    item.text1,
+    item.label_class_1,
     item.prefix_key,
     item.suffix_key,
     item.background_color,
@@ -18,7 +18,7 @@ function toPayload(item: LabelItem): { [key: string]: any } {
   return {
     id: item.id,
     text: item.text,
-    text1: item.text1,
+    label_class_1: item.label_class_1,
     prefix_key: item.prefixKey,
     suffix_key: item.suffixKey,
     background_color: item.backgroundColor,

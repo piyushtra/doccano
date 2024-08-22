@@ -46,6 +46,7 @@ export default Vue.extend({
     return {
       editedItem: {
         text: '',
+        label_class_1: '',
         prefixKey: null,
         suffixKey: null,
         backgroundColor: '#73D8FF',
@@ -53,6 +54,7 @@ export default Vue.extend({
       } as LabelDTO,
       defaultItem: {
         text: '',
+        label_class_1: '',
         prefixKey: null,
         suffixKey: null,
         backgroundColor: '#73D8FF',
