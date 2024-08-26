@@ -2,6 +2,8 @@
   <layout-text v-if="doc.id" v-shortkey="shortKeys" @shortkey="changeSelectedLabel">
     <template #header>
       <toolbar-laptop
+        :label-types="labelTypes"
+        :unique-label-names="uniqueLabelNames"
         :doc-id="doc.id"
         :enable-auto-labeling.sync="enableAutoLabeling"
         :guideline-text="project.guideline"
@@ -13,6 +15,7 @@
       />
       <toolbar-mobile :total="docs.count" class="d-flex d-sm-none" />
     </template>
+    
     <template #content>
       <v-card>
         <div class="annotation-text pa-4">
@@ -150,6 +153,7 @@ export default {
     ...mapGetters('auth', ['isAuthenticated', 'getUsername', 'getUserId']),
     ...mapGetters('config', ['isRTL']),
 
+
     shortKeys() {
       return Object.fromEntries(this.spanTypes.map((item) => [item.id, [item.suffixKey]]))
     },
@@ -188,6 +192,14 @@ export default {
       } else {
         return this.spanTypes
       }
+    },
+
+  uniqueLabelNames() {
+    const uniqueLabelNames_set =  new Set(this.labelTypes.map(item => item.label_class_1));
+    const uniqueLabelNames_array = Array.from(uniqueLabelNames_set);
+    console.log("uni");
+    console.log(uniqueLabelNames_array);
+    return uniqueLabelNames_array
     }
   },
 
@@ -307,6 +319,7 @@ export default {
     }
   }
 }
+
 </script>
 
 <style scoped>

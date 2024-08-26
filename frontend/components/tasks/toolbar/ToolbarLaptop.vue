@@ -40,6 +40,15 @@
         </v-dialog>
 
         <button-keyboard-shortcut @click:open="dialogShortcut = true" />
+        <!-- <button-label-class-filter 
+        :value="labelFilterOption" 
+        :label-types="labelTypes" @click:filter="labelClassFilter" /> -->
+
+        <button-label-class-filter 
+        :value="labelFilterOption" 
+        :label-types="labelTypes"
+        :unique-label-names="uniqueLabelNames" @click:filter="labelClassFilter" />
+
         <v-dialog v-model="dialogShortcut">
           <form-keyboard-shortcut @click:close="dialogShortcut = false" />
         </v-dialog>
@@ -65,6 +74,7 @@ import ButtonAutoLabeling from './buttons/ButtonAutoLabeling.vue'
 import ButtonClear from './buttons/ButtonClear.vue'
 import ButtonComment from './buttons/ButtonComment.vue'
 import ButtonFilter from './buttons/ButtonFilter.vue'
+import ButtonLabelClassFilter from './buttons/ButtonLabelClassFilter.vue'
 import ButtonGuideline from './buttons/ButtonGuideline.vue'
 import ButtonOrder from './buttons/ButtonOrder.vue'
 import ButtonPagination from './buttons/ButtonPagination.vue'
@@ -82,6 +92,7 @@ export default Vue.extend({
     ButtonClear,
     ButtonComment,
     ButtonFilter,
+    ButtonLabelClassFilter,
     ButtonGuideline,
     ButtonOrder,
     ButtonKeyboardShortcut,
@@ -116,6 +127,20 @@ export default Vue.extend({
     total: {
       type: Number,
       default: 1
+    },
+    labelTypes:{
+      type: Array,
+      default :() => {
+        return this.labelTypes || []; // Provide a default if labelTypes is undefined
+      }
+    },
+    uniqueLabelNames:{
+      type: Array,
+      default :() => {
+        
+        console.log(this.uniqueLabelNames);
+        return  this.uniqueLabelNames || []; // Provide a default if uniqueLabelNames is undefined
+      }
     }
   },
 
@@ -138,6 +163,10 @@ export default Vue.extend({
     filterOption(): string {
       // @ts-ignore
       return this.$route.query.isChecked
+    },
+    labelFilterOption(): string {
+      // @ts-ignore
+      return this.$route.query.labelClassFilter
     },
     orderOption(): string {
       // @ts-ignore
@@ -168,6 +197,15 @@ export default Vue.extend({
       })
     },
 
+    labelClassFilter(labelClass: string) {
+      this.$router.push({
+        query: {
+          page: '1',
+          labelClass,
+        }
+      })
+    },
+
     changeOrder(ordering: string) {
       this.$router.push({
         query: {
@@ -186,8 +224,10 @@ export default Vue.extend({
         this.$emit('update:enable-auto-labeling', false)
       }
     }
+
   }
 })
+
 </script>
 
 <style scoped>
