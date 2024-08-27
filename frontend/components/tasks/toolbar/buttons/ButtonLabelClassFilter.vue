@@ -110,14 +110,6 @@ export default {
       console.log(newSelectedLabelClassIndex)
       this.$emit('change-selected-label-class', this.selectedLabelClass);
     }
-  },
-  methods: {
-    setSelectedLabelClass(label_index) {
-      
-      this.selectedLabelClass = this.uniqueLabelNames[label_index]
-      //  console.log(this.selectedLabelClass)
-      this.$emit('change-selected-label-class', this.selectedLabelClass)
-    }
   }
 }
 

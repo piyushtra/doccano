@@ -235,13 +235,6 @@ export default Vue.extend({
       this.$emit('change-selected-label-class', selectedLabelClass);
     }
 
-  },
-
-  watch: {
-    changeSelectedLabelClass(newValue) {
-      console.log(newValue)
-      this.$emit('change-selected-label-class', newValue);
-    }
   }
 })
 
