@@ -22,7 +22,7 @@
       :x="x"
       :y="y"
       :selected-label="currentLabel"
-      :labels="entityLabels"
+      :labels="filteredLabels"
       @close="cleanUp"
       @click:label="addOrUpdateEntity"
     />
@@ -101,6 +101,11 @@ export default Vue.extend({
     relationMode: {
       type: Boolean,
       default: false
+    },
+    filteredLabels:{
+      type: Array,
+      default: () => [],
+      required: true
     }
   },
 
@@ -115,6 +120,7 @@ export default Vue.extend({
       entity: null as any,
       relation: null as any,
       selectedEntities: [] as SpanDTO[]
+
     }
   },
 

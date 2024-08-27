@@ -44,6 +44,7 @@ export default Vue.extend({
       default: () => [],
       required: true
     },
+  
     opened: {
       type: Boolean,
       default: false,

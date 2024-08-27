@@ -28,6 +28,7 @@
             :entity-labels="spanTypes"
             :relations="relations"
             :relation-labels="relationTypes"
+            :filtered-labels="getClassSpecificLabels"
             :allow-overlapping="project.allowOverlappingSpans"
             :grapheme-mode="project.enableGraphemeMode"
             :selected-label="selectedLabel"
@@ -133,7 +134,7 @@ export default {
       mdiChevronUp,
       mdiChevronDown,
       selectedLabelClass: "fx",
-      selecedClassSpecificLabels: []
+      selectedClassSpecificLabels: []
     }
   },
 
@@ -210,6 +211,7 @@ export default {
     console.log("getClassSpecificLabels :"+this.selectedLabelClass)
     console.log(this.labelTypes.filter(label => label.label_class_1 === this.selectedLabelClass))
     return this.labelTypes.filter(label => label.label_class_1 === this.selectedLabelClass);
+   
   }
   },
 
@@ -332,6 +334,11 @@ export default {
       console.log("in index.vue")
       console.log(newVal)
       this.selectedLabelClass = this.uniqueLabelNames[newVal]
+      this.selectedClassSpecificLabels = 
+      this.labelTypes.filter(label => label.label_class_1 === this.selectedLabelClass);
+      //  selectedClassSpecificLabels = this.selectedClassSpecificLabels
+      console.log(this.selectedClassSpecificLabels)
+      //  console.log(selectedClassSpecificLabels)
       this.$emit('change-selected-label-class', this.selectedLabelClass);
     }
   }
