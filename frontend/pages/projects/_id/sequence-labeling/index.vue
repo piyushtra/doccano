@@ -4,6 +4,7 @@
       <toolbar-laptop
         :label-types="labelTypes"
         :unique-label-names="uniqueLabelNames"
+        @change-selected-label-class="changeSelectedLabelClass"
         :doc-id="doc.id"
         :enable-auto-labeling.sync="enableAutoLabeling"
         :guideline-text="project.guideline"
@@ -61,7 +62,7 @@
             </v-switch>
             <v-chip-group v-model="selectedLabelIndex" column>
               <v-chip
-                v-for="(item, index) in labelTypes"
+                v-for="(item, index) in getClassSpecificLabels"
                 :key="item.id"
                 v-shortkey="[item.suffixKey]"
                 :color="item.backgroundColor"
@@ -130,7 +131,9 @@ export default {
       relationMode: false,
       showLabelTypes: true,
       mdiChevronUp,
-      mdiChevronDown
+      mdiChevronDown,
+      selectedLabelClass: "fx",
+      selecedClassSpecificLabels: []
     }
   },
 
@@ -200,7 +203,14 @@ export default {
     console.log("uni");
     console.log(uniqueLabelNames_array);
     return uniqueLabelNames_array
-    }
+    },
+
+  getClassSpecificLabels(){
+    //  this.selectedLabelClass = uniqueLabelNames[this.selectedLabelClass]
+    console.log("getClassSpecificLabels :"+this.selectedLabelClass)
+    console.log(this.labelTypes.filter(label => label.label_class_1 === this.selectedLabelClass))
+    return this.labelTypes.filter(label => label.label_class_1 === this.selectedLabelClass);
+  }
   },
 
   watch: {
@@ -316,6 +326,13 @@ export default {
 
     changeSelectedLabel(event) {
       this.selectedLabelIndex = this.spanTypes.findIndex((item) => item.suffixKey === event.srcKey)
+    },
+
+    changeSelectedLabelClass(newVal) {
+      console.log("in index.vue")
+      console.log(newVal)
+      this.selectedLabelClass = this.uniqueLabelNames[newVal]
+      this.$emit('change-selected-label-class', this.selectedLabelClass);
     }
   }
 }

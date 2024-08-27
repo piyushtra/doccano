@@ -47,7 +47,10 @@
         <button-label-class-filter 
         :value="labelFilterOption" 
         :label-types="labelTypes"
-        :unique-label-names="uniqueLabelNames" @click:filter="labelClassFilter" />
+        :unique-label-names="uniqueLabelNames" 
+        @change-selected-label-class="changeSelectedLabelClass"
+        v-model="selectedLabelClass"
+        @click:filter="labelClassFilter" />
 
         <v-dialog v-model="dialogShortcut">
           <form-keyboard-shortcut @click:close="dialogShortcut = false" />
@@ -142,6 +145,7 @@ export default Vue.extend({
         return  this.uniqueLabelNames || []; // Provide a default if uniqueLabelNames is undefined
       }
     }
+
   },
 
   data() {
@@ -151,7 +155,8 @@ export default Vue.extend({
       dialogComment: false,
       dialogGuideline: false,
       dialogShortcut: false,
-      errorMessage: ''
+      errorMessage: '',
+      selectedLabelClass: ''
     }
   },
 
@@ -223,8 +228,20 @@ export default Vue.extend({
       } else {
         this.$emit('update:enable-auto-labeling', false)
       }
+    },
+
+    changeSelectedLabelClass(selectedLabelClass) {
+      console.log(selectedLabelClass)
+      this.$emit('change-selected-label-class', selectedLabelClass);
     }
 
+  },
+
+  watch: {
+    changeSelectedLabelClass(newValue) {
+      console.log(newValue)
+      this.$emit('change-selected-label-class', newValue);
+    }
   }
 })
 

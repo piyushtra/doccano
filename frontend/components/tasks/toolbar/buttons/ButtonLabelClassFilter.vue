@@ -13,11 +13,11 @@
       </v-tooltip>
     </template>
     <v-list>
-      <v-list-item-group v-model="selected" mandatory>
+      <v-list-item-group v-model="selectedLabelClass" mandatory>
         <v-list-item 
-                  v-for="(item, index) in uniqueLabelNames" :key="item">
+                  v-for="(item, index) in uniqueLabelNames" :key="index">
           <v-list-item-icon>
-            <v-icon v-if="selected === index">
+            <v-icon v-if="selectedLabelClassComputed === item">
               {{ mdiCheck }}
             </v-icon>
           </v-list-item-icon>
@@ -68,7 +68,8 @@ export default {
         { title: this.$t('annotation.filterOption3'), param: 'false' }
       ],
       mdiFilter,
-      mdiCheck
+      mdiCheck,
+      selectedLabelClass: ""
     }
   },
 
@@ -82,9 +83,40 @@ export default {
         this.$emit('click:filter', this.items[value].param)
       }
     },
+
+    selectedLabelClassComputed: {
+      get() {
+        //  const index = this.items.find((item) => item === this.selectedLabelClass)
+        console.log(this.uniqueLabelNames[this.selectedLabelClass])
+        return this.uniqueLabelNames[this.selectedLabelClass]
+      },
+      set(selectedLabelClassIndex) {
+        //  console.log(selectedLabelClassIndex)
+          this.selectedLabelClass = this.uniqueLabelNames[selectedLabelClassIndex]
+          console.log(this.uniqueLabelNames)
+        this.$emit('change-selected-label-class', this.selectedLabelClass)
+        //  this.$emit('click:filter', this.selectedLabelClass)
+      }
+    },
      
     projectId() {
       return this.$route.params.id
+    }
+  },
+
+  watch: {
+    selectedLabelClass(newSelectedLabelClassIndex) {
+      
+      console.log(newSelectedLabelClassIndex)
+      this.$emit('change-selected-label-class', this.selectedLabelClass);
+    }
+  },
+  methods: {
+    setSelectedLabelClass(label_index) {
+      
+      this.selectedLabelClass = this.uniqueLabelNames[label_index]
+      //  console.log(this.selectedLabelClass)
+      this.$emit('change-selected-label-class', this.selectedLabelClass)
     }
   }
 }
