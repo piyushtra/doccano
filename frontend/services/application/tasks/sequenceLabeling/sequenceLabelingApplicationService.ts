@@ -49,6 +49,7 @@ export class SequenceLabelingApplicationService extends AnnotationApplicationSer
     }
   }
 
+
   public async listRelations(projectId: string, exampleId: number): Promise<RelationDTO[]> {
     const items = await this.relationRepository.list(projectId, exampleId)
     return items.map((item) => new RelationDTO(item))

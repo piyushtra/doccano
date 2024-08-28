@@ -12,7 +12,8 @@ function toModel(item: { [key: string]: any }): ExampleItem {
     item.filename,
     item.is_confirmed,
     item.upload_name,
-    item.assignments
+    item.assignments,
+    item.classification
   )
 }
 
@@ -101,5 +102,13 @@ export class APIExampleRepository implements ExampleRepository {
   async confirm(projectId: string, exampleId: number): Promise<void> {
     const url = `/projects/${projectId}/examples/${exampleId}/states`
     await this.request.post(url, {})
+  }
+
+  async updateLabelClassification(projectId: string, item: number,
+     selectedLabelClass: string): Promise<void> {
+    const url = `/projects/${projectId}/examples/${item}`
+    //  const payload = toPayload({"classification" : selectedLabelClass})
+    await this.request.patch(url, {"classification" : selectedLabelClass})
+  
   }
 }

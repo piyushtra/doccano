@@ -4,7 +4,7 @@ from .models import Comment, Example
 
 
 class ExampleAdmin(admin.ModelAdmin):
-    list_display = ("text", "project", "meta")
+    list_display = ("text", "project", "meta", "classification")
     ordering = ("project",)
     search_fields = ("text",)
 

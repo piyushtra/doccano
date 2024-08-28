@@ -22,6 +22,7 @@ class Example(models.Model):
     score = models.FloatField(default=100)
     created_at = models.DateTimeField(auto_now_add=True, db_index=True)
     updated_at = models.DateTimeField(auto_now=True)
+    classification = models.CharField(max_length=512, null=True, blank=True)
 
     @property
     def comment_count(self):

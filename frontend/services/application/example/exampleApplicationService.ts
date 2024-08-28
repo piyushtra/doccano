@@ -66,6 +66,11 @@ export class ExampleApplicationService {
     await this.repository.confirm(projectId, exampleId)
   }
 
+  public async updateLabelClassification(projectId: string, exampleId: number,
+    selectedLabelClass: string): Promise<void> {
+    await this.repository.updateLabelClassification(projectId, exampleId, selectedLabelClass)
+  }
+
   private toModel(item: ExampleDTO): ExampleItem {
     // Todo: annotationApprover, commentCount, fileUrl and isConfirmed
     // is not copied correctly.

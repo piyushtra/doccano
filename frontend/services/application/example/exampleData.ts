@@ -12,6 +12,7 @@ export class ExampleDTO {
   url: string
   isConfirmed: boolean
   assignments: Assignment[]
+  classification: string
 
   constructor(item: ExampleItem) {
     this.id = item.id
@@ -25,6 +26,7 @@ export class ExampleDTO {
     this.url = item.url
     this.isConfirmed = item.isConfirmed
     this.assignments = item.assignments
+    this.classification = item.classification
   }
 }
 

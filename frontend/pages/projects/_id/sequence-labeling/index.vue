@@ -133,7 +133,7 @@ export default {
       showLabelTypes: true,
       mdiChevronUp,
       mdiChevronDown,
-      selectedLabelClass: "fx",
+      selectedLabelClass: "",
       selectedClassSpecificLabels: []
     }
   },
@@ -147,6 +147,8 @@ export default {
       this.$route.query.ordering
     )
     const doc = this.docs.items[0]
+    this.selectedLabelClass = doc.classification
+    console.log(doc)
     if (this.enableAutoLabeling && !doc.isConfirmed) {
       await this.autoLabel(doc.id)
     }
@@ -330,10 +332,17 @@ export default {
       this.selectedLabelIndex = this.spanTypes.findIndex((item) => item.suffixKey === event.srcKey)
     },
 
-    changeSelectedLabelClass(newVal) {
+    async changeSelectedLabelClass(newVal) {
       console.log("in index.vue")
       console.log(newVal)
       this.selectedLabelClass = this.uniqueLabelNames[newVal]
+      await this.$services.example.updateLabelClassification(
+        this.projectId,
+        this.doc.id,
+        this.selectedLabelClass
+      )
+
+
       this.selectedClassSpecificLabels = 
       this.labelTypes.filter(label => label.label_class_1 === this.selectedLabelClass);
       //  selectedClassSpecificLabels = this.selectedClassSpecificLabels
