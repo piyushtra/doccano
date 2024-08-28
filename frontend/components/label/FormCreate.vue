@@ -9,7 +9,7 @@
               :value="text"
               :counter="100"
               :label="$t('labels.labelName')"
-              :rules="[rules.required, rules.counter, rules.nameDuplicated]"
+              :rules="[rules.required, rules.counter]"
               outlined
               required
               @input="$emit('update:text', $event)"
@@ -20,7 +20,7 @@
               :value="label_class_1"
               :counter="100"
               :label="$t('labels.labelName1')"
-              :rules="[rules.required, rules.counter, rules.nameDuplicated]"
+              :rules="[rules.required, rules.counter]"
               outlined
               required
               @input="$emit('update:label_class_1', $event)"

@@ -4,7 +4,7 @@ from .models import CategoryType, SpanType
 
 
 class LabelAdmin(admin.ModelAdmin):
-    list_display = ("text", "project", "text_color", "background_color")
+    list_display = ("text", "project", "text_color", "background_color", "label_class_1")
     ordering = ("project",)
     search_fields = ("text",)
 

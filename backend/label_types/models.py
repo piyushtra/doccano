@@ -57,7 +57,7 @@ class LabelType(models.Model):
 
     class Meta:
         abstract = True
-        constraints = [models.UniqueConstraint(fields=["project", "text"], name="%(app_label)s_%(class)s_is_unique")]
+        constraints = [models.UniqueConstraint(fields=["project", "text", "label_class_1"], name="%(app_label)s_%(class)s_is_unique")]
         ordering = ["created_at"]
 
 
