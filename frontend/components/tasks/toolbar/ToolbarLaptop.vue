@@ -133,17 +133,11 @@ export default Vue.extend({
     },
     labelTypes:{
       type: Array,
-      default :() => {
-        return this.labelTypes || []; // Provide a default if labelTypes is undefined
-      }
+      default :() => []
     },
     uniqueLabelNames:{
       type: Array,
-      default :() => {
-        
-        console.log(this.uniqueLabelNames);
-        return  this.uniqueLabelNames || []; // Provide a default if uniqueLabelNames is undefined
-      }
+      default :() => []
     }
 
   },
@@ -230,7 +224,7 @@ export default Vue.extend({
       }
     },
 
-    changeSelectedLabelClass(selectedLabelClass) {
+    changeSelectedLabelClass(selectedLabelClass: string) {
       console.log(selectedLabelClass)
       this.$emit('change-selected-label-class', selectedLabelClass);
     }
