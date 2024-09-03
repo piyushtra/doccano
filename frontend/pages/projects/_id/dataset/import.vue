@@ -116,7 +116,7 @@ export default {
       catalog: [],
       selected: null,
       myFiles: [],
-      option: { column_data: '', column_label: '', delimiter: '' },
+      option: { column_data: '', column_label: '', delimiter: '', column_label_class: '' },
       taskId: null,
       polling: null,
       errors: [],
@@ -152,6 +152,7 @@ export default {
       return this.uploadedFiles.length === 0 || this.taskId !== null || !this.valid
     },
     properties() {
+      console.log(this.catalog)
       const item = this.catalog.find((item) => item.displayName === this.selected)
       if (item) {
         return item.properties
@@ -161,6 +162,7 @@ export default {
     },
     textFields() {
       const asArray = Object.entries(this.properties)
+      console.log(this.properties)
       const textFields = asArray.filter(([_, value]) => !('enum' in value))
       return Object.fromEntries(textFields)
     },
@@ -182,10 +184,13 @@ export default {
       if (item) {
         const column_data = 'column_data'
         const column_label = 'column_label'
-        if (column_data in this.option && column_label in this.option) {
+        const column_label_class = 'column_label_class'
+        if (column_data in this.option && column_label in this.option 
+        && column_label_class in this.option) {
           return item.example
             .replaceAll(column_data, this.option[column_data])
             .replaceAll(column_label, this.option[column_label])
+            .replaceAll(column_label_class, this.option[column_label_class])
             .trim()
         } else {
           return item.example.trim()

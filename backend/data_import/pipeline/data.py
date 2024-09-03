@@ -17,8 +17,8 @@ class BaseData(BaseModel, abc.ABC):
         super().__init__(**data)
 
     @classmethod
-    def parse(cls, example_uuid: UUID4, filename: str, upload_name: str, text: str = "", **kwargs):
-        return cls(uuid=example_uuid, filename=filename, upload_name=upload_name, text=text, meta=kwargs)
+    def parse(cls, example_uuid: UUID4, filename: str, upload_name: str, text: str = "", classification: str = "", **kwargs):
+        return cls(uuid=example_uuid, filename=filename, upload_name=upload_name, text=text, classification=classification, meta=kwargs)
 
     def __hash__(self):
         return hash(tuple(self.dict()))
@@ -30,6 +30,7 @@ class BaseData(BaseModel, abc.ABC):
 
 class TextData(BaseData):
     text: str
+    classification: str
 
     @validator("text")
     def text_is_not_empty(cls, value: str):
@@ -45,6 +46,7 @@ class TextData(BaseData):
             filename=self.filename,
             upload_name=self.upload_name,
             text=self.text,
+            classification=self.classification,
             meta=self.meta,
         )
 

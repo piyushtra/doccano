@@ -10,6 +10,7 @@
         :guideline-text="project.guideline"
         :is-reviewd="doc.isConfirmed"
         :total="docs.count"
+        :enable-label-class-selection="project.enableLabelClassSelection"
         class="d-none d-sm-block"
         @click:clear-label="clear"
         @click:review="confirm"
@@ -33,6 +34,7 @@
             :grapheme-mode="project.enableGraphemeMode"
             :selected-label="selectedLabel"
             :relation-mode="relationMode"
+            
             @addEntity="addSpan"
             @addRelation="addRelation"
             @click:entity="updateSpan"

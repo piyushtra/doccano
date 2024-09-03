@@ -15,6 +15,7 @@ from .pipeline.labels import Categories, Labels, Relations, Spans, Texts
 from .pipeline.makers import BinaryExampleMaker, ExampleMaker, LabelMaker
 from .pipeline.readers import (
     DEFAULT_LABEL_COLUMN,
+    DEFAULT_LABEL_CLASS_COLUMN,
     DEFAULT_TEXT_COLUMN,
     FileName,
     Reader,
@@ -65,6 +66,7 @@ class DatasetWithSingleLabelType(Dataset):
             project=project,
             data_class=self.data_class,
             column_data=kwargs.get("column_data") or DEFAULT_TEXT_COLUMN,
+            column_label_class=kwargs.get("column_label_class") or DEFAULT_LABEL_CLASS_COLUMN,
             exclude_columns=[kwargs.get("column_label") or DEFAULT_LABEL_COLUMN],
         )
         self.label_maker = LabelMaker(

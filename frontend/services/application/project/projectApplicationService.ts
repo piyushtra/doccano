@@ -13,6 +13,7 @@ type ProjectFields = {
   exclusiveCategories: boolean
   tags: string[]
   allowOverlappingSpans: boolean
+  enableLabelClassSelection: boolean
   enableGraphemeMode: boolean
   useRelation: boolean
   allowMemberToCreateLabelType: boolean
@@ -39,7 +40,9 @@ export class ProjectApplicationService {
   }
 
   public async findById(id: string): Promise<Project> {
-    return await this.repository.findById(id)
+    const project= await this.repository.findById(id)
+    //  console.log(project)
+    return project
   }
 
   public async create({
@@ -50,6 +53,7 @@ export class ProjectApplicationService {
     enableSharingMode,
     exclusiveCategories,
     allowOverlappingSpans,
+    enableLabelClassSelection,
     enableGraphemeMode,
     useRelation,
     tags,
@@ -66,6 +70,7 @@ export class ProjectApplicationService {
       enableSharingMode,
       exclusiveCategories,
       allowOverlappingSpans,
+      enableLabelClassSelection,
       enableGraphemeMode,
       useRelation,
       tags.map((tag) => TagItem.create(tag)),
@@ -88,6 +93,7 @@ export class ProjectApplicationService {
       enableSharingMode,
       exclusiveCategories,
       allowOverlappingSpans,
+      enableLabelClassSelection,
       enableGraphemeMode,
       useRelation,
       guideline = '',
@@ -104,6 +110,7 @@ export class ProjectApplicationService {
       enableSharingMode,
       exclusiveCategories,
       allowOverlappingSpans,
+      enableLabelClassSelection,
       enableGraphemeMode,
       useRelation,
       [],

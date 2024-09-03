@@ -10,6 +10,7 @@ from .exceptions import FileParseException
 
 DEFAULT_TEXT_COLUMN = "text"
 DEFAULT_LABEL_COLUMN = "label"
+DEFAULT_LABEL_CLASS_COLUMN = "classification"
 FILE_NAME_COLUMN = "filename"
 UPLOAD_NAME_COLUMN = "upload_name"
 UUID_COLUMN = "example_uuid"

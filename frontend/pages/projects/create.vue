@@ -19,6 +19,8 @@
         />
         <template v-if="isSequenceLabelingProject">
           <v-checkbox v-model="editedItem.allowOverlappingSpans" label="Allow overlapping spans" />
+          <v-checkbox v-model="editedItem.enableLabelClassSelection" 
+          label="Enable lable class selection for all users" />
           <v-img
             :src="require('~/assets/project/creation.gif')"
             height="200"
@@ -90,6 +92,7 @@ const initializeProject = () => {
     enableSharingMode: false,
     exclusiveCategories: false,
     allowOverlappingSpans: false,
+    enableLabelClassSelection: false,
     enableGraphemeMode: false,
     useRelation: false,
     tags: [] as string[],

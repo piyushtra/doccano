@@ -44,7 +44,8 @@
         :value="labelFilterOption" 
         :label-types="labelTypes" @click:filter="labelClassFilter" /> -->
 
-        <button-label-class-filter 
+        <button-label-class-filter
+        v-if="enableLabelClassSelection"
         :value="labelFilterOption" 
         :label-types="labelTypes"
         :unique-label-names="uniqueLabelNames" 
@@ -138,10 +139,15 @@ export default Vue.extend({
     uniqueLabelNames:{
       type: Array,
       default :() => []
+    },
+    enableLabelClassSelection:{
+      type: Boolean,
+      default: () => false
     }
+    
 
   },
-
+  
   data() {
     return {
       dialogAutoLabeling: false,

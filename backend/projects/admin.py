@@ -25,7 +25,7 @@ class MemberAdmin(admin.ModelAdmin):
 
 
 class ProjectAdmin(admin.ModelAdmin):
-    list_display = ("name", "description", "project_type", "random_order", "collaborative_annotation")
+    list_display = ("name", "description", "project_type", "random_order", "collaborative_annotation", "enable_label_class_selection")
     ordering = ("project_type",)
     search_fields = ("name",)
 

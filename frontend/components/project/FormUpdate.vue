@@ -15,6 +15,10 @@
               label="Allow project members to create label types"
             />
           </v-col>
+<!--          <template v-if="isSequenceLabelingProject">
+            <v-checkbox v-model="editedItem.enableLabelClassSelection" 
+            label="Enable lable class selection for all users" /> 
+          </template>-->
         </v-row>
       </v-form>
     </v-card-text>
@@ -45,7 +49,7 @@ import ProjectNameField from './ProjectNameField.vue'
 import RandomOrderField from './RandomOrderField.vue'
 import SharingModeField from './SharingModeField.vue'
 import TagList from './TagList.vue'
-import { Project } from '~/domain/models/project/project'
+import { Project, SequenceLabeling } from '~/domain/models/project/project'
 
 export default Vue.extend({
   components: {
@@ -63,6 +67,12 @@ export default Vue.extend({
       valid: false,
       isEditing: false,
       isUpdating: false
+    }
+  },
+
+  computed: {
+    isSequenceLabelingProject(): boolean {
+      return this.project.projectType === SequenceLabeling
     }
   },
 

@@ -7,6 +7,7 @@ from .exceptions import FileParseException
 from .label import Label
 from .readers import (
     DEFAULT_TEXT_COLUMN,
+    DEFAULT_LABEL_CLASS_COLUMN,
     LINE_NUMBER_COLUMN,
     UPLOAD_NAME_COLUMN,
     UUID_COLUMN,
@@ -21,11 +22,13 @@ class ExampleMaker:
         project: Project,
         data_class: Type[BaseData],
         column_data: str = DEFAULT_TEXT_COLUMN,
+        column_label_class: str = DEFAULT_LABEL_CLASS_COLUMN,
         exclude_columns: Optional[List[str]] = None,
     ):
         self.project = project
         self.data_class = data_class
         self.column_data = column_data
+        self.column_label_class = column_label_class
         self.exclude_columns = exclude_columns or []
         self._errors: List[FileParseException] = []
 
@@ -41,6 +44,8 @@ class ExampleMaker:
         for row in df_with_data_column.to_dict(orient="records"):
             line_num = row.pop(LINE_NUMBER_COLUMN, 0)
             row[DEFAULT_TEXT_COLUMN] = row.pop(self.column_data)  # Rename column for parsing
+            row[DEFAULT_LABEL_CLASS_COLUMN] = row.pop(self.column_label_class)
+            #print(row)
             try:
                 data = self.data_class.parse(**row)
                 example = data.create(self.project)

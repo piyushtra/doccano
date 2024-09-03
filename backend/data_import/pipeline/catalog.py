@@ -210,6 +210,7 @@ class ArgColumn(BaseModel):
     encoding: encodings = "utf_8"
     column_data: str = "text"
     column_label: str = "label"
+    column_label_class: str = "label_class"
 
 
 class ArgDelimiter(ArgColumn):
